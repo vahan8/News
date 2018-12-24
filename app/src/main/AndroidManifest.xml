@@ -12,6 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="gevorgyan.vahan.com.news.main.data.remote.glide.NewsGlideModule"
+            android:value="GlideModule"/>
+
         <activity android:name=".main.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

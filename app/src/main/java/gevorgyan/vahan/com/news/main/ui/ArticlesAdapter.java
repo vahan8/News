@@ -12,6 +12,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import gevorgyan.vahan.com.news.R;
+import gevorgyan.vahan.com.news.main.data.remote.glide.ImageLoader;
 import gevorgyan.vahan.com.news.main.domain.model.Article;
 import gevorgyan.vahan.com.news.main.util.DateUtils;
 
@@ -83,6 +84,9 @@ public class ArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             textViewCaption.setText(article.getSource().getName());
             textViewPublishedDate.setText(DateUtils.getFormattedDate(article.getPublishedAt()));
             textViewTitle.setText(article.getTitle());
+
+            //Download image with Glide
+            ImageLoader.load(itemView.getContext(), imageViewImage, article.getUrlToImage());
         }
 
         @Override
