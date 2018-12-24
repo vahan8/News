@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -13,10 +14,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import gevorgyan.vahan.com.news.R;
 import gevorgyan.vahan.com.news.main.domain.model.Article;
 
 public class MainFragment extends Fragment {
+
+    private RecyclerView articlesRecyclerView;
+    private ArticlesAdapter articlesAdapter;
 
     private MainViewModel articlesViewModel;
 
@@ -27,24 +34,30 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        articlesRecyclerView = view.findViewById(R.id.recyclerview_articles);
+        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
-        final TextView tvMessage = getView().findViewById(R.id.textview_message);
-
         articlesViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         articlesViewModel.getArticlesObservable().observe(this, new Observer<List<Article>>() {
             @Override
             public void onChanged(List<Article> articles) {
-                // This is for testing api
-                tvMessage.setText("articles count is " + articles.size());
+                // Refresh data
+                articlesAdapter.swap(articles);
             }
         });
+
+        // RecyclerView initialization
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        articlesRecyclerView.setItemAnimator(itemAnimator);
+        articlesRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        articlesAdapter = new ArticlesAdapter(requireActivity(), new ArrayList<Article>());
+        articlesRecyclerView.setAdapter(articlesAdapter);
 
     }
 

@@ -1,17 +1,42 @@
 package gevorgyan.vahan.com.news.main.domain.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Article {
 
+    @SerializedName("source")
+    private Source source;
+
+    @SerializedName("author")
     private String author;
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("description")
     private String description;
+
+    @SerializedName("url")
     private String url;
+
+    @SerializedName("urlToImage")
     private String urlToImage;
+
+    @SerializedName("publishedAt")
     private Date publishedAt;
+
+    @SerializedName("content")
     private String content;
 
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
+    }
 
     public String getAuthor() {
         return author;
