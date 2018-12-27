@@ -23,7 +23,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ItemsClickListener itemClickListener;
 
     public interface ItemsClickListener {
-        void onClick(Article article, ImageView imageView);
+        void onClick(Article article);
     }
 
     public ArticlesAdapter(Context context, List<Article> articles) {
@@ -92,7 +92,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @Override
         public void onClick(View v) {
             Article article = articles.get(getLayoutPosition());
-            itemClickListener.onClick(article, imageViewImage);
+            itemClickListener.onClick(article);
         }
     }
 

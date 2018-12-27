@@ -2,9 +2,12 @@ package gevorgyan.vahan.com.news.main.domain.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Article {
+public class Article implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @SerializedName("source")
     private Source source;

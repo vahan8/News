@@ -2,7 +2,10 @@ package gevorgyan.vahan.com.news.main.domain.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Source {
+import java.io.Serializable;
+
+public class Source implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @SerializedName("id")
     private String id;

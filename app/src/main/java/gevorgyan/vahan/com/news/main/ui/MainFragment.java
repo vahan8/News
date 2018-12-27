@@ -1,10 +1,10 @@
 package gevorgyan.vahan.com.news.main.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +57,24 @@ public class MainFragment extends Fragment {
         articlesRecyclerView.setItemAnimator(itemAnimator);
         articlesRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         articlesAdapter = new ArticlesAdapter(requireActivity(), new ArrayList<Article>());
+        articlesAdapter.setItemClickListener(new ArticlesAdapter.ItemsClickListener() {
+            @Override
+            public void onClick(Article article) {
+                openArticle(article);
+            }
+        });
+
         articlesRecyclerView.setAdapter(articlesAdapter);
 
+    }
+
+    private void openArticle(Article article) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ArticleActivity.KEY_ARTICLE, article);
+        Intent intent = new Intent(requireActivity(), ArticleActivity.class);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 
 }
