@@ -10,11 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import gevorgyan.vahan.com.news.R;
 import gevorgyan.vahan.com.news.main.data.remote.glide.ImageLoader;
+import gevorgyan.vahan.com.news.main.data.repository.ArticlesRepository;
 import gevorgyan.vahan.com.news.main.domain.model.Article;
 
 public class ArticleActivity extends AppCompatActivity {
 
     public static final String KEY_ARTICLE = "KEY_ARTICLE";
+
+    private Article article;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,7 @@ public class ArticleActivity extends AppCompatActivity {
 
         //Get Article from bundle
         Bundle bundle = getIntent().getExtras();
-        Article article = (Article) bundle.getSerializable(KEY_ARTICLE);
+        article = (Article) bundle.getSerializable(KEY_ARTICLE);
 
         setTitle(article.getSource().getName());
 
@@ -61,6 +64,7 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     private void save() {
+        ArticlesRepository.storeArticle(article);
     }
 
 }
