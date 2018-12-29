@@ -2,4 +2,6 @@
     <string name="app_name">News</string>
     <string name="save">Save</string>
     <string name="article">Article</string>
+    <string name="title_home">Home</string>
+    <string name="title_saved">Saved</string>
 </resources>
