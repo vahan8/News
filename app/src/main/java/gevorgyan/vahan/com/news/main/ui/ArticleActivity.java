@@ -36,7 +36,8 @@ public class ArticleActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView textViewContent = findViewById(R.id.textview_content);
-        textViewContent.setText(article.getContent());
+        String content = article.getContent() == null ? article.getDescription() : article.getContent();
+        textViewContent.setText(content);
         ImageView imageViewImage = findViewById(R.id.imageview_image);
         ImageLoader.load(this, imageViewImage, article.getUrlToImage());
     }

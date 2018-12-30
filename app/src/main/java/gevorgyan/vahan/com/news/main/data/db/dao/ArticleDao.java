@@ -105,6 +105,7 @@ public class ArticleDao {
                 article.setSource(source);
                 article.setAuthor(cursor.getString(cursor.getColumnIndex(AUTHOR)));
                 article.setTitle(cursor.getString(cursor.getColumnIndex(TITLE)));
+                article.setDescription(cursor.getString(cursor.getColumnIndex(DESCRIPTION)));
                 article.setPublishedAt(new Date(cursor.getLong(cursor.getColumnIndex(PUBLISHED_AT))));
                 article.setUrl(cursor.getString(cursor.getColumnIndex(URL)));
                 article.setUrlToImage(cursor.getString(cursor.getColumnIndex(URL_TO_IMAGE)));
