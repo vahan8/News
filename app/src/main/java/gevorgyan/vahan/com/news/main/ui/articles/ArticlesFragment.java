@@ -1,4 +1,4 @@
-package gevorgyan.vahan.com.news.main.ui;
+package gevorgyan.vahan.com.news.main.ui.articles;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,16 +19,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import gevorgyan.vahan.com.news.R;
 import gevorgyan.vahan.com.news.main.domain.model.Article;
+import gevorgyan.vahan.com.news.main.ui.ArticleActivity;
 
-public class MainFragment extends Fragment {
+public class ArticlesFragment extends Fragment {
 
     private RecyclerView articlesRecyclerView;
     private ArticlesAdapter articlesAdapter;
 
-    private MainViewModel articlesViewModel;
+    private ArticlesViewModel articlesViewModel;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static ArticlesFragment newInstance() {
+        return new ArticlesFragment();
     }
 
     @Nullable
@@ -43,7 +44,8 @@ public class MainFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        articlesViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        // ViewModel initialization
+        articlesViewModel = ViewModelProviders.of(this).get(ArticlesViewModel.class);
         articlesViewModel.getArticlesObservable().observe(this, new Observer<List<Article>>() {
             @Override
             public void onChanged(List<Article> articles) {

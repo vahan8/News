@@ -8,6 +8,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import gevorgyan.vahan.com.news.R;
+import gevorgyan.vahan.com.news.main.ui.articles.ArticlesFragment;
+import gevorgyan.vahan.com.news.main.ui.saved.SavedArticlesFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
+                    .replace(R.id.container, ArticlesFragment.newInstance())
                     .commitNow();
         }
 
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
                             current_navigation_item_id = R.id.navigation_home;
-                            getSupportFragmentManager().beginTransaction().replace(R.id.container, MainFragment.newInstance()).commitNow();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.container, ArticlesFragment.newInstance()).commitNow();
                             return true;
                         case R.id.navigation_saved:
                             current_navigation_item_id = R.id.navigation_saved;

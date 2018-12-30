@@ -1,4 +1,4 @@
-package gevorgyan.vahan.com.news.main.ui;
+package gevorgyan.vahan.com.news.main.ui.articles;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,20 +16,17 @@ import gevorgyan.vahan.com.news.main.data.remote.glide.ImageLoader;
 import gevorgyan.vahan.com.news.main.domain.model.Article;
 import gevorgyan.vahan.com.news.main.util.DateUtils;
 
-public class SavedArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private LayoutInflater inflater;
     private List<Article> articles;
 
     private ItemsClickListener itemClickListener;
 
-
     public interface ItemsClickListener {
         void onClick(Article article);
-
-        void onDeleteClick(Article article);
     }
 
-    public SavedArticlesAdapter(Context context, List<Article> articles) {
+    public ArticlesAdapter(Context context, List<Article> articles) {
         this.inflater = LayoutInflater.from(context);
         this.articles = articles;
 
@@ -49,7 +46,7 @@ public class SavedArticlesAdapter extends RecyclerView.Adapter<RecyclerView.View
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = inflater.inflate(R.layout.list_item_saved_articles, parent, false);
+        View v = inflater.inflate(R.layout.list_item_articles, parent, false);
         return new ViewHolder(v);
     }
 
@@ -69,7 +66,6 @@ public class SavedArticlesAdapter extends RecyclerView.Adapter<RecyclerView.View
         private TextView textViewCaption;
         private TextView textViewPublishedDate;
         private ImageView imageViewImage;
-        private ImageView imageViewDelete;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -77,11 +73,8 @@ public class SavedArticlesAdapter extends RecyclerView.Adapter<RecyclerView.View
             textViewCaption = itemView.findViewById(R.id.textview_caption);
             textViewPublishedDate = itemView.findViewById(R.id.textview_published_date);
             imageViewImage = itemView.findViewById(R.id.imageview_image);
-            imageViewDelete = itemView.findViewById(R.id.imageview_delete);
 
             itemView.setOnClickListener(this);
-            // Delete click overrides the row click
-            imageViewDelete.setOnClickListener(this);
         }
 
 
@@ -99,14 +92,7 @@ public class SavedArticlesAdapter extends RecyclerView.Adapter<RecyclerView.View
         @Override
         public void onClick(View v) {
             Article article = articles.get(getLayoutPosition());
-            switch (v.getId()) {
-                case R.id.imageview_delete:
-                    itemClickListener.onDeleteClick(article);
-                    break;
-                default:
-                    itemClickListener.onClick(article);
-                    break;
-            }
+            itemClickListener.onClick(article);
         }
     }
 

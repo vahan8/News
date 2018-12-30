@@ -1,4 +1,4 @@
-package gevorgyan.vahan.com.news.main.ui;
+package gevorgyan.vahan.com.news.main.ui.saved;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import gevorgyan.vahan.com.news.R;
 import gevorgyan.vahan.com.news.main.domain.model.Article;
+import gevorgyan.vahan.com.news.main.ui.ArticleActivity;
 
 public class SavedArticlesFragment extends Fragment {
 

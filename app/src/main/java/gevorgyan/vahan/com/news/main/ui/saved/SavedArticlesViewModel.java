@@ -1,4 +1,4 @@
-package gevorgyan.vahan.com.news.main.ui;
+package gevorgyan.vahan.com.news.main.ui.saved;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
